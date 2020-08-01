@@ -1,30 +1,27 @@
 export default {
 	state: {
-		appName: "Lemon Platform",
-		themeColor: '#FF6666',// 当前主题颜色
-		oldThemeColor: '#FF6666',// 旧主题颜色
-		collapse: false,// 导航栏收缩状态
-		menuRoteLoaded: false // 菜单和路由是否已经加载
+		appName: "Kitty Platform",  // 应用名称
+		themeColor: "#14889A",  // 主题颜色
+		oldThemeColor: "#14889A",   // 上一次主题颜色
+		collapse: false,  // 导航栏收缩状态
+		menuRouteLoaded: false    // 菜单和路由是否已经加载
 	},
-	
 	getters: {
-		collapse(state) {
+		collapse(state) {// 对应着上面state
 			return state.collapse
 		}
 	},
-	
 	mutations: {
-		onCollapse(state) {
-			state.collapse = !this.state.collapse
+		onCollapse(state) {  // 改变收缩状态
+			state.collapse = !state.collapse
+		},
+		setThemeColor(state, themeColor) {  // 改变主题颜色
+			state.oldThemeColor = state.themeColor
+			state.themeColor = themeColor
+		},
+		menuRouteLoaded(state, menuRouteLoaded) {  // 改变菜单和路由的加载状态
+			state.menuRouteLoaded = menuRouteLoaded;
 		}
 	},
-	
-	setThemeColor(state, themeColor) {
-		state.oldThemeColor = state.themeColor
-		state.themeColor = themeColor
-	},
-	
-	menuRoteLoaded(state, menuRouteLoaded) {
-		state.menuRouteLoaded = menuRouteLoaded
-	}
+	actions: {}
 }

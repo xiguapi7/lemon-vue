@@ -46,7 +46,7 @@
             <li class="fa fa-envelope-o fa-lg" style="color:#fff;"></li>
           </el-badge>
           <el-popover placement="bottom-end" ref="popover-message" trigger="click">
-            <message-panel></message-panel>
+            <messages-panel></messages-panel>
           </el-popover>
         </el-menu-item>
         <el-menu-item index="4" v-popover:popover-notice>
