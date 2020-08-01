@@ -1,33 +1,35 @@
 <template>
-  <div class="page">
-    <h2>Home Page</h2>
-    <el-button @click="testAxios()" type="primary">测试Axios调用</el-button>
-    <el-button @click="getUser()" type="primary">获取用户信息</el-button>
-    <el-button @click="getMenu()" type="primary">获取菜单信息</el-button>
+  <div class="container">
+    <!-- 导航菜单栏 -->
+    <nav-bar></nav-bar>
+    <!-- 头部区域 -->
+    <head-bar></head-bar>
+    <!-- 主内容区域 -->
+    <main-content></main-content>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import HeadBar from "./HeadBar"
+import NavBar from "./NavBar"
+import MainContent from "./MainContent"
 
 export default {
-  name: 'Home',
-  methods: {
-    testAxios() {
-      axios.get('http://localhost:8080').then(res => {
-        alert(res.data)
-      })
-    },
-    getUser() {
-      axios.get('http://localhost:8080/user').then(res => {
-        alert(JSON.stringify(res.data))
-      })
-    },
-    getMenu() {
-      axios.get('http://localhost:8080/menu').then(res => {
-        alert(JSON.stringify(res.data))
-      })
-    }
+  components: {
+    HeadBar,
+    NavBar,
+    MainContent
   }
-}
+};
 </script>
+
+<style lang="scss" scoped>
+.container {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  // background: rgba(224, 234, 235, 0.1);
+}
+</style>
