@@ -1,16 +1,24 @@
 <template>
   <div class="menu-bar-container">
     <!-- logo -->
-    <div :class="'menu-bar-width'" @click="$router.push('/')" class="logo"
+    <div :class="collapse?'menu-bar-collapse-width':'menu-bar-width'" @click="$router.push('/')" class="logo"
          style="background:#FF6666">
-      <img src="@/assets/logo.png"/>
-      <div>Lemon</div>
+      <img src="@/assets/logo.png" v-if="collapse"/>
+      <div>{{ collapse ? '' : appName }}</div>
     </div>
   </div>
 </template>
 
 <script>
+import {mapState} from 'vuex'
+
 export default {
+  computed: {
+    ...mapState({
+      appName: state => state.app.appName,
+      collapse: state => state.app.collapse,
+    })
+  },
   methods: {}
 }
 </script>
@@ -40,7 +48,7 @@ export default {
     }
 
     div {
-      font-size: 25px;
+      font-size: 22px;
       color: white;
       text-align: left;
       padding-left: 20px;
@@ -49,6 +57,10 @@ export default {
 
   .menu-bar-width {
     width: 200px;
+  }
+
+  .menu-bar-collapse-width {
+    width: 65px;
   }
 }
 

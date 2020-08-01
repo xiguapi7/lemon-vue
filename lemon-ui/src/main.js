@@ -7,6 +7,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import 'font-awesome/css/font-awesome.min.css'
 import i18n from './i18n'
+import store from "./store";
 
 Vue.config.productionTip = false
 
@@ -19,6 +20,7 @@ new Vue({
 	el: '#app',
 	i18n,
 	router,
+	store,
 	components: {App},
 	template: '<App/>'
 })

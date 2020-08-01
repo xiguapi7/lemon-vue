@@ -1,9 +1,17 @@
 <template>
-  <div :class="'position-left'" class="headbar" style="background:#FF6666">
+  <div :class="collapse?'position-collapse-left':'position-left'" class="headbar"
+       style="background:#FF6666">
+    <!-- 导航收缩 -->
+    <span class="hamburg">
+      <el-menu active-text-color="#FF6666" background-color="#FF6666" class="el-menu-demo" mode="horizontal"
+               text-color="#fff">
+        <el-menu-item @click="onCollapse" index="1"><hamburger :isActive="collapse"></hamburger></el-menu-item>
+      </el-menu>
+    </span>
     <!-- 工具栏 -->
     <span class="toolbar">
-      <el-menu active-text-color="#FF6666" background-color="#FF6666" class="el-menu-demo" mode="horizontal"
-               text-color="#FF6666">
+      <el-menu active-text-color="#14889A" background-color="#14889A" class="el-menu-demo" mode="horizontal"
+               text-color="#14889A">
         <el-menu-item index="1">
           <!-- 用户信息 -->
           <span class="user-info"><img :src="user.avatar"/>{{ user.name }}</span>
@@ -14,8 +22,13 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
+import Hamburger from "@/components/Hamburger"
 
 export default {
+  components: {
+    Hamburger
+  },
   data() {
     return {
       user: {
@@ -31,7 +44,11 @@ export default {
   methods: {
     selectNavBar(key, keyPath) {
       console.log(key, keyPath)
-    }
+    },
+    // 折叠导航栏
+    onCollapse: function () {
+      this.$store.commit('onCollapse')
+    },
   },
   mounted() {
     var user = sessionStorage.getItem("user")
@@ -39,6 +56,11 @@ export default {
       this.user.name = user
       this.user.avatar = require("@/assets/user.png")
     }
+  },
+  computed: {
+    ...mapState({
+      collapse: state => state.app.collapse
+    })
   }
 }
 </script>
@@ -56,7 +78,7 @@ export default {
   border-left-style: solid;
 }
 
-.navbar {
+.hamburg, .navbar {
   float: left;
 }
 
@@ -80,5 +102,9 @@ export default {
 
 .position-left {
   left: 200px;
+}
+
+.position-collapse-left {
+  left: 65px;
 }
 </style>

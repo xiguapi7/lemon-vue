@@ -1,5 +1,6 @@
 <template>
-  <div :class="'position-left'" class="main-container" id="main-container">
+  <div :class="$store.state.app.collapse?'position-collapse-left':'position-left'" class="main-container"
+       id="main-container">
     <!-- 标签页 -->
     <div class="tab-container"></div>
     <!-- 主内容区域 -->
@@ -44,5 +45,9 @@ export default {
 
 .position-left {
   left: 200px;
+}
+
+.position-collapse-left {
+  left: 65px;
 }
 </style>
